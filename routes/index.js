@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
+var todosCtrl = require('../controllers/index');
+
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'To Do List' });
-});
+router.get('/', todosCtrl.index);
 
-router.post('/', function(req, res, next) {
-  console.log('todo:', req.body.todo);
-  res.redirect('/');
-});
+router.post('/', todosCtrl.create);
+
+router.delete('/:id', todosCtrl.delete);
 
 module.exports = router;
